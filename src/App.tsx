@@ -1,14 +1,18 @@
-import axios from "axios"
 import React from "react"
-import { useQuery } from "react-query"
+import { QueryCache, ReactQueryCacheProvider } from "react-query"
 import styled from "styled-components"
+import Chat from "./chat/Chat"
+
+const queryCache = new QueryCache()
 
 const App: React.FC = () => {
-  const { data } = useQuery("fetchLuke", () => axios("http://localhost:4000"))
-
-  console.log(data)
-
-  return <Container>Hellooooooo</Container>
+  return (
+    <ReactQueryCacheProvider queryCache={queryCache}>
+      <Container>
+        <Chat />
+      </Container>
+    </ReactQueryCacheProvider>
+  )
 }
 
 export default App
