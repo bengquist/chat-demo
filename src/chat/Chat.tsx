@@ -4,7 +4,9 @@ import { useQuery } from "react-query"
 import socketIOClient from "socket.io-client"
 
 const Chat: React.FC = () => {
-  const { data } = useQuery("fetchLuke", () => Axios("http://localhost:4000"))
+  const { data } = useQuery("fetchLuke", () =>
+    Axios("http://localhost:4000/v1"),
+  )
 
   useEffect(() => {
     const socket = socketIOClient("http://localhost:4000")

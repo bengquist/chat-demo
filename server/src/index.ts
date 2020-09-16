@@ -1,16 +1,16 @@
+import cookieParser from "cookie-parser"
 import cors from "cors"
 import express from "express"
 import io from "socket.io"
+import router from "./routes/index"
 
 const PORT = 4000
 
 const app = express()
 
 app.use(cors())
-
-app.get("*", (req, res) => {
-  res.send({ user: 1, messaage: "yo" })
-})
+app.use(cookieParser())
+app.use("/v1", router)
 
 const server = app.listen(PORT, () => {
   console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`)
